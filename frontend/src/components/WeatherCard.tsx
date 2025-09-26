@@ -11,7 +11,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, isMainView = fal
 
   const getWeatherIcon = (temp: string, uvValue: string) => {
     const tempValue = parseFloat(temp);
-    const uv = parseFloat(uvValue);
+    const uv = uvValue && uvValue !== '//' ? parseFloat(uvValue) : 0;
     
     // Simple logic to determine weather icon based on temperature and UV
     if (uv > 5 && tempValue > 25) {
@@ -84,7 +84,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, isMainView = fal
 
   const getWeatherCondition = (temp: string, uvValue: string) => {
     const tempValue = parseFloat(temp);
-    const uv = parseFloat(uvValue);
+    const uv = uvValue && uvValue !== '//' ? parseFloat(uvValue) : 0;
     
     if (uv > 5 && tempValue > 25) return "Sunny";
     if (tempValue > 30) return "Hot";
@@ -116,14 +116,14 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, isMainView = fal
     return (
       <div className="weather-card main-view">
         <div className="main-weather-content">
-          {getWeatherIcon(temperature.Value, uvIndex.Value)}
+          {getWeatherIcon(temperature.Value, uvIndex?.Value || '//')}
           
           <div className="main-temperature">
             {temperature.Value}°{temperature.Unit}
           </div>
           
           <div className="weather-condition">
-            {getWeatherCondition(temperature.Value, uvIndex.Value)}
+            {getWeatherCondition(temperature.Value, uvIndex?.Value || '//')}
           </div>
           
           <div className="small-weather-icon">
@@ -168,7 +168,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData, isMainView = fal
         <div className="info-row">
           <span className="info-label">UV Index</span>
           <span className="info-value">
-            {uvIndex.Value === '//' || uvIndex.Value === '' ? (
+            {!uvIndex || uvIndex.Value === '//' || uvIndex.Value === '' ? (
               <span className="uv-index">N/A</span>
             ) : (
               <span className="uv-index">

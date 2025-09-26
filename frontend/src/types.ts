@@ -34,7 +34,7 @@ export interface RecordTime {
 export interface WeatherData {
   station: WeatherStation;
   temperature: Temperature;
-  uvIndex: UVIndex;
+  uvIndex?: UVIndex;
   recordTime: RecordTime;
   error?: string;
 }
