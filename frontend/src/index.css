@@ -24,9 +24,9 @@ body {
 /* Main App Container */
 .app {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  display: grid;
+  place-items: center; /* robust centering even if children change layout */
   padding: 20px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
@@ -162,6 +162,7 @@ body {
 }
 
 /* Station Selector */
+/* Ensure Station Selector is centered like the weather-container */
 .station-selector {
   width: 100%;
   max-width: 375px;
@@ -171,6 +172,8 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin: 0 auto; /* horizontally center when parent isn't flex-centered */
   overflow: hidden;
 }
 
