@@ -72,12 +72,14 @@ const App: React.FC = () => {
 
   if (showStationSelector) {
     return (
-      <StationSelector
-        weatherData={weatherData}
-        selectedIndex={selectedStationIndex}
-        onStationSelect={handleStationSelect}
-        onBack={handleBackClick}
-      />
+      <div className="app">
+        <StationSelector
+          weatherData={weatherData}
+          selectedIndex={selectedStationIndex}
+          onStationSelect={handleStationSelect}
+          onBack={handleBackClick}
+        />
+      </div>
     );
   }
 
